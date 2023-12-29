@@ -2,6 +2,7 @@
     <!-- Navbar -->
     <nav class="fixed z-10 bg-transparent hover:bg-white transition-colors duration-200 ease-in-out w-full px-12 py-2"
         @mouseover="isHovering = true" @mouseleave="isHovering = false">
+
         <div class="flex items-center justify-between">
             <!-- Logo -->
             <div class="pt-2">
@@ -44,13 +45,18 @@
 </template>
    
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
+const route = useRoute();
 let isHovering = ref(false);
+
+watch(() => route.name, (newVal) => {
+    isHovering.value = newVal !== 'register';
+});
+
 
 const logout = () => {
     // Clear the token from local storage
@@ -60,6 +66,7 @@ const logout = () => {
     router.push("/login");
 };
 </script>
+
    
 <style scoped>
 </style>

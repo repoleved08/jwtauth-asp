@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ToastPlugin from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-bootstrap.css';
@@ -10,7 +11,7 @@ import store from './store'
 import './Index.css'
 
 // Add the icon to the library
-library.add(fas)
+library.add(fas, fab)
 
 // Create the app
 const app = createApp(App)

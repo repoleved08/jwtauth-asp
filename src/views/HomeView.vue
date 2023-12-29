@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-custom-bg flex ">
+  <div class="bg-custom-bg ">
     <!-- Text goes here -->
     <div class="container mx-auto px-4 pt-14">
       <div class="flex items-center justify-center mt-3">
@@ -7,7 +7,7 @@
       </div>
 
       <span><img src="../assets/icons/S.webp" alt="Icon" class="ml-2 w-6 h-6"></span>
-      <span class="text-red-500 text-4xl font-bold">{{ message }}</span>
+      <span class="text-yellow-500 text-sm font-bold">{{ message }}</span>
       <!-- Add pt-4 here -->
       <p class="text-4xl font-bold tracking-wide text-white">Make Money Smart, Not Hard</p>
       <p class="text-3xl tracking-tight text-white leading-loose pt-4">We will show you How</p>
@@ -33,7 +33,7 @@
 
       <div class="mt-4">
         <h1 class="text-5xl font-extrabold text-white">A Massive Upgrade</h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-4 mt-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-4 mb-12 mt-8">
           <div class="flex flex-col items-center">
             <img src="../assets/icons/candlestick.png" class="mx-auto max-w-xs" width="80px" alt="">
             <p class="text-white">Trades all major Pairs indices & mental</p>
@@ -98,8 +98,8 @@
         <!-- box-3 -->
         <div
           class="mt-12 outline py-10 rounded-lg outline-offset-2 outline-blue-500 flex flex-col-reverse md:flex-row mb-6 ">
-          <div class="basis-1/2 justify-start py-12 items-start order-2 sm:order-1">
-            <h1 class="text-2xl font-bold text-white text-start ml-14">
+          <div class="basis-1/2 mt-12 justify-start py-12 items-start order-2 sm:order-1">
+            <h1 class="text-3xl font-bold text-white text-start ml-14">
               <span>Whats new</span>
               <span class="inline-block ml-3 pt-1">
                 <img src="../assets/icons/check.png" alt="">
@@ -154,32 +154,101 @@
         </ul>
       </div>
       <Bundle />
+      <div class="mt-12 mb-12">
+        <h1 class="text-2xl text-white font-bold">WARNING: PRICE INCREASING SOON</h1>
+        <p class="text-white">The Price will increase to $599 in a month, act now</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-4 mt-8">
+          <div class="flex flex-row items-center">
+            <img src="../assets/icons/asset_3.png" class="mx-auto max-w-xs" width="40px" alt="">
+            <span class="text-white">IMMEDIATE ACCESS</span>
+          </div>
+          <div class="flex flex-row items-center">
+            <img src="../assets/icons/asset_4.png" class="mx-auto max-w-xs" width="40px" alt="">
+            <p class="text-white">SATISFACTION GUARANTEE</p>
+          </div>
+          <div class="flex flex-row items-center">
+            <img src="../assets/icons/asset_5.png" class="mx-auto max-w-xs" width="40px" alt="">
+            <p class="text-white">SECURE PURCHASE</p>
+          </div>
+        </div>
+
+        <div class="mt-6 mb-6">
+          <h1 class="text-4xl font-bold text-white">Follow Us</h1>
+          <div class="flex space-x-2 align-center justify-center">
+            <div class="items-center text-3xl">
+              <span class="text-white"><font-awesome-icon :icon="['fab', 'instagram']" /></span>
+            </div>
+            <div class="items-center text-3xl">
+              <span class="text-white"><font-awesome-icon :icon="['fab', 'telegram']" /></span>
+            </div>
+            <div class="items-center text-3xl">
+              <span class="text-white"><font-awesome-icon :icon="['fab', 'youtube']" /></span>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+
+        <!-- Community -->
+        <div
+          class="mt-12 outline py-10 justify-center rounded-lg outline-offset-2 outline-blue-500 flex flex-col-reverse md:flex-row mb-6 ">
+          <div class="basis-1/2 justify-start py-6 items-start order-2 sm:order-1">
+            <h1 class="text-3xl font-bold text-white text-start ml-14">
+              <span>our community</span>
+              <span class="inline-block ml-3 pt-1">
+                <img src="../assets/icons/check.png" alt="">
+              </span>
+            </h1>
+            <p class="text-darkGrayishBlue text-start ml-14">A dedicated Channel that post Choppa S results </p>
+
+            <button
+              class="text-white bg-sky-500 mt-12  ring-2 ring-sky-500 ring-inset rounded-md sm:w-6/12 lg:w-5/12 py-4 baseline transform transition-transform duration-500 hover:scale-110 font-bold">
+              Join Community
+            </button>
+          </div>
+          <div class="basis-1/2 order-1 sm:order-2 text-end ml-18">
+            <img src="../assets/icons/tel.png" width="350px" alt="Laptop">
+          </div>
+        </div>
+
+      </div>
     </div>
+    <Footer />
   </div>
 </template>
  
 <script lang="ts" setup>
 import Bundle from './Bundle.vue';
+import Footer from './Footer.vue';
 import { onMounted, ref } from 'vue';
 
 const message = ref("You are not logged in")
 const token = ref('');
 
 onMounted(async () => {
-  // Retrieve the token from local storage
-  const token = localStorage.getItem('token');
+  try {
+    const response = await fetch('http://localhost:5245/api/User/details', {
+      method: 'GET',
+      headers: {
+        'Accept': 'text/plain',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      }
+    });
 
-  const response = await fetch('http://localhost:5245/api/User/details', {
-    method: 'GET',
-    headers: {
-      'Accept': 'text/plain',
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  });
-  const text = await response.json();
-  message.value = `Hi ${text.name}`
-  console.log(text.name);
+
+    const text = await response.json();
+    message.value = `Hi ${text.name}`;
+    console.log(text.name);
+  } catch (error) {
+    console.error('Failed to fetch user details:', error);
+  }
 
 })
 
