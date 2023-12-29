@@ -22,6 +22,12 @@ module.exports = {
         veryPaleRed: 'hsl(13, 100%, 96%)',
         veryLightGray: 'hsl(0, 0%, 98%)',
       },
+      backgroundImage: {
+        'custom-bg': "url('/src/assets/bg.jpg')",
+        'icon-head': "url('/src/assets/icons/S.webp')",
+        'mockup-1': "url('/src/assets/mockups/phones.jpg')",
+        'candlestick': "url('/src/assets/icons/candlestick.png')",
+      },
     },
   },
   plugins: [],

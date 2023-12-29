@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import RegisterUser from '@/views/RegisterUser.vue'
+import LoginUser from '@/views/LoginUser.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/register',
     name: 'register',
     component: RegisterUser
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginUser
   }
 ]
 
